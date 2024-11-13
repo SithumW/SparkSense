@@ -1,118 +1,97 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+import Home from './Screens/Home'
+import Settings from './Screens/Settings'
+import Bill from './Screens/Bill'
+import Statistics from './Screens/Statistics'
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+
+
+
+
+const Tab = createBottomTabNavigator()
+
+
+
+
+
+const homeName = "Home";
+const statisticsName = "Statistics";
+const settingsName = "Settings";
+const billName = "Bill";
+
+
+
+import React from 'react'
+
+ export default function App() {
+
+
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    <NavigationContainer>
+      <Tab.Navigator  
+      initialRouteName= {homeName}
+
+    
+      screenOptions={({route}) => ({
+
+  
+
+
+        tabBarIcon : ({focused,color,size})=>{
+          let iconName : any;
+          let rn =route.name;
+
+          if (rn===homeName){
+             iconName = focused? 'home' :'home-outline'
+          }
+          else if (rn === statisticsName){
+            iconName = focused? 'list' :'list-outline'
+          }
+          else if (rn === settingsName){
+            iconName = focused? 'settings' :'settings-outline'
+          }
+          else if (rn === billName){
+            iconName = focused? 'home' :'home-outline'
+          }
+
+          return <Ionicons name={iconName} size={size} color={color}/>
+
+        },
+
+        tabBarActiveTintColor : "green",
+        tabBarInactiveTintColor :'grey',
+        tabBarLabelStyle : {paddingBottom : 10, fontSize : 10},
+        tabBarStyle:{padding:10, height : 70}
+        
+
+      })}
+      
+     
+      
+      >
+   
+      <Tab.Screen name = {homeName} component={Home}></Tab.Screen>
+      <Tab.Screen name = {statisticsName} component={Statistics}></Tab.Screen>
+      <Tab.Screen name = {billName} component={Bill}></Tab.Screen>
+      <Tab.Screen name = {settingsName} component={Settings}></Tab.Screen>
+
+
+      </Tab.Navigator>
+
+    </NavigationContainer>
+   
+   
+  )
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
-export default App;
+
