@@ -1,4 +1,3 @@
-GitHub Repository Description:
 SparkSense is a comprehensive IoT-based electrical energy monitoring system that tracks real-time power consumption and provides detailed analytics.
 
 The project consists of three main components:
@@ -10,6 +9,3 @@ The application provides users with insights into their electricity usage throug
 
 Tech Stack: React Native, TypeScript, Python Flask, AWS DynamoDB, Arduino/NodeMCU, Socket.io, Axios
 
-Feel free to customize this description based on any additional features or specific goals you'd like to highlight!
-
-Claude Haiku 4.5 • 0.33x
