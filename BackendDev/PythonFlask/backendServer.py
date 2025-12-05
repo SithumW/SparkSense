@@ -435,7 +435,7 @@ if __name__ == '__main__':
     backgroundThreadDaily.start()
 
     #server
-    app.run(host='192.168.56.1', port=5000, debug=True)  
+    app.run(host='192.168.8.106', port=5000, debug=True)  
 
 
 
